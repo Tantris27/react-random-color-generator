@@ -67,12 +67,7 @@ export default function App() {
           }}
         >
           Color
-          <input
-            type="text"
-            value={hue}
-            onChange={onChange}
-            style={{ display: 'block' }}
-          />
+          <input type="text" onChange={onChange} style={{ display: 'block' }} />
         </label>
         <label
           style={{
@@ -82,7 +77,6 @@ export default function App() {
           Light
           <input
             type="text"
-            value={light}
             onChange={onChange2}
             style={{ display: 'block' }}
           />
