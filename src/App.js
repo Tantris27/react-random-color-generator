@@ -1,25 +1,57 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from 'react';
 
-function App() {
+const randomColor = require('randomcolor');
+
+export default function App() {
+  const randomcolor = randomColor({
+    luminosity: 'random',
+    hue: 'random',
+  });
+  const [color, setColor] = useState(randomColor());
+  function onMouseClick() {
+    setColor(randomcolor);
+  }
+  const [size, setSize] = useState('300');
+  function handleChange(event) {
+    setSize(event.target.value);
+  }
+  const styleblock = {
+    display: 'block',
+    width: size + 'px',
+    height: size + 'px',
+    background: color,
+    marginBottom: 30,
+  };
+  const stylediv = {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <div>
+      <div className="App" style={stylediv}>
+        <h1 style={{ marginBottom: 30 }}>Color Generator</h1>
+        <div style={styleblock} />
+        <h2 style={{ marginBottom: 30 }}>{color}</h2>
+        <button onClick={onMouseClick} style={{ marginBottom: 30 }}>
+          Change Color
+        </button>
+        <label
+          style={{
+            display: 'block',
+          }}
         >
-          Learn React
-        </a>
-      </header>
+          Size in px:
+          <input
+            type="text"
+            value={size}
+            onChange={handleChange}
+            style={{ display: 'block' }}
+          />
+        </label>
+      </div>
     </div>
   );
 }
-
-export default App;
